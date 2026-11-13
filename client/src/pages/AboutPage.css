@@ -1,0 +1,276 @@
+/* ══════════════════════════════════════════════════════════
+   AboutPage — all about-specific styles
+══════════════════════════════════════════════════════════ */
+
+/* ── About hero (two-column: text + image) ─────────────── */
+.about-hero {
+  padding-block: clamp(3.5rem, 8vw, 5.5rem);
+}
+
+.about-hero__inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-hero__lead {
+  color: #c5dde4;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+
+.about-hero__lead p {
+  margin-bottom: 0.85rem;
+  max-width: 54ch;
+}
+
+.about-hero__lead p:last-child {
+  margin-bottom: 0;
+}
+
+.about-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.about-hero__image-wrapper {
+  /* let the image be as tall as the text column naturally */
+}
+
+.about-hero__image-wrapper img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+  object-fit: cover;
+}
+
+/* ── Our company (two-column: text + image) ────────────── */
+.about-company {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-company__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-company__photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: block;
+}
+
+/* ── Stat cards inside company ─────────────────────────── */
+.about-company__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* ── Mission values grid ───────────────────────────────── */
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.about-values__col {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-values__col p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+/* ── Video block ───────────────────────────────────────── */
+.about-video {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-video__player {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 16 / 9;
+  background: #0b2530;
+}
+
+.about-video__player video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Team grid ─────────────────────────────────────────── */
+.about-team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.about-team__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about-team__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+  /* ready for real photos */
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.about-team__role {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 0.15rem 0 0.5rem;
+}
+
+.about-team__card h3 {
+  margin-bottom: 0;
+}
+
+.about-team__card p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* ── Network pills ─────────────────────────────────────── */
+.about-partners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+}
+
+.about-partners__chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── CTA band ──────────────────────────────────────────── */
+.about-cta {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.about-cta__inner {
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.about-cta__inner h2 {
+  color: #fff;
+}
+
+.about-cta__inner p {
+  color: #c5dde4;
+  max-width: 48ch;
+  margin-inline: auto;
+  margin-bottom: 1.5rem;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RTL overrides
+══════════════════════════════════════════════════════════ */
+[dir='rtl'] .about-hero__lead p,
+[dir='rtl'] .about-cta__inner p {
+  text-align: right;
+}
+
+[dir='rtl'] .about-hero__inner,
+[dir='rtl'] .about-company,
+[dir='rtl'] .about-video {
+  direction: rtl;
+}
+
+[dir='rtl'] .about-team__card {
+  text-align: right;
+  align-items: flex-end;
+}
+
+/* ══════════════════════════════════════════════════════════
+   Responsive
+══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .about-company__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .about-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-hero__image-wrapper {
+    order: -1;
+  }
+
+  .about-company {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-company__image {
+    order: -1;
+  }
+
+  .about-video {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-company__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-team {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .about-team {
+    grid-template-columns: 1fr;
+  }
+}

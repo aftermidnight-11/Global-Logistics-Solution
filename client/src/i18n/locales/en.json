@@ -1,0 +1,271 @@
+{
+  "nav": {
+    "Home": "Home",
+    "About": "About",
+    "Vision": "Vision",
+    "Services": "Services",
+    "Gallery": "Gallery",
+    "Case Studies": "Case Studies",
+    "Blog": "Blog",
+    "Career": "Career",
+    "Contact": "Contact",
+    "menu": "Menu",
+    "closeMenu": "Close",
+    "toggleTheme": "Toggle theme",
+    "language": "Switch language",
+    "letsChat": "Let's chat"
+  },
+  "footer": {
+    "brand": "Global Logistics Solutions",
+    "address": "123 Logistics Park, Global City, World Trade Zone 366100, Saudi Arabia",
+    "email": "info@global-logisticssolution.com",
+    "links": "Helpful links",
+    "services": "Services",
+    "about": "About",
+    "careers": "Careers",
+    "contact": "Contact",
+    "tracking": "Shipment tracking",
+    "social": "Connect",
+    "privacy": "Privacy Policy",
+    "copyright": "Global Logistics Solutions",
+    "linkedin": "LinkedIn",
+    "whatsapp": "WhatsApp"
+  },
+  "home": {
+    "heroTitle": "Global logistics solution, Your fast freight forwarding",
+    "heroLead": "Air, ocean and project cargo with one accountable team across the Middle East and Asia hubs.",
+    "ctaQuote": "Request a quote",
+    "ctaServices": "Explore services",
+    "whyTitle": "Why Global Logistics Solutions",
+    "stat1": "Years forwarding experience",
+    "stat2": "Countries served",
+    "stat3": "Regional hubs",
+    "stat4": "Typical quote response",
+    "coreServices": "Core services",
+    "loading": "Loading sections..."
+  },
+  "about": {
+    "heroTitle": "About Global Logistics Solutions",
+    "heroLead": "GLS (Global Logistics Solutions) is a Saudi Arabia-based logistics provider delivering comprehensive freight solutions across the Kingdom and international markets.\n\nFrom customs clearance and product compliance to final delivery, our objective is simple: to make global shipping efficient, transparent, and cost-effective with a single point of coordination.",
+    "readStory": "Read our story",
+    "meetTeam": "Meet the team",
+    "companyTitle": "Our company",
+    "companyP1": "Global Logistics Solutions started as a boutique forwarder in Dubai and grew by staying close to clients on complex lanes. Today we combine air, ocean and project cargo desks with in-house customs teams at key hubs.",
+    "companyP2": "We invest in people and process, not hype, so your team always knows who owns the next milestone on a shipment.",
+    "founded": "Founded",
+    "countries": "Countries",
+    "hubs": "Hubs",
+    "team": "Team members",
+    "missionTitle": "Our mission",
+    "val1Title": "Integrity",
+    "val1Desc": "Transparent pricing, honest timelines and documentation you can audit.",
+    "val2Title": "Partnership",
+    "val2Desc": "We embed with your operations team, not just your inbox.",
+    "val3Title": "Excellence",
+    "val3Desc": "Measured by on-time performance and first-time customs clearance.",
+    "videoTitle": "See how we work",
+    "videoP1": "From booking to final delivery, our coordinators handle documents, customs and carriers so you do not have to.",
+    "videoP2": "Watch a short tour of our operations, from the port to the warehouse floor.",
+    "teamTitle": "Our team",
+    "networkTitle": "Our network",
+    "networkDesc": "Partners and affiliations that extend our reach and compliance coverage.",
+    "ctaTitle": "Ready to move your next shipment?",
+    "ctaDesc": "Share lane, cargo and timeline. We respond within one business day.",
+    "ctaBtn": "Let's chat"
+  },
+  "vision": {
+    "heroTitle": "Our vision",
+    "heroDesc": "A world where every shipper has the same clarity and accountability as the largest multinationals.",
+    "prioritiesTitle": "2030 priorities",
+    "p1": "Carbon-aware routing options on every quote",
+    "p2": "Digital milestones shared proactively, not on request",
+    "p3": "Regional talent programs in every hub city"
+  },
+  "services": {
+    "heroTitle": "Services",
+    "heroDesc": "One partner for international moves. Choose a service below or contact us for multi-modal solutions."
+  },
+  "gallery": {
+    "heroTitle": "Gallery",
+    "catAll": "All",
+    "catPort": "Port",
+    "catWarehouse": "Warehouse",
+    "catAir": "Air",
+    "catHeavy": "Heavy lift",
+    "catEvents": "Events"
+  },
+  "caseStudies": {
+    "heroTitle": "Case studies"
+  },
+  "blog": {
+    "heroTitle": "Blog",
+    "noPosts": "No posts yet. Check back soon."
+  },
+  "career": {
+    "heroTitle": "Careers",
+    "heroDesc": "Join a team obsessed with reliable moves and honest client communication.",
+    "openRoles": "Open roles",
+    "aboutTitle": "About it",
+    "aboutDesc": "If you have any questions or want to reach out directly regarding career opportunities, please use the form below.",
+    "mailUs": "Mail Us",
+    "labelRole": "Role",
+    "labelEmail": "Email address",
+    "labelName": "Your Name",
+    "labelPhone": "Phone number",
+    "labelFile": "Attach CV / Resume",
+    "labelMessage": "Message",
+    "submit": "Submit message",
+    "submitting": "Submitting...",
+    "successMsg": "Thank you for applying. Our HR team will review your application."
+  },
+  "contact": {
+    "heroTitle": "Contact",
+    "heroDesc": "Reach the team closest to your lane or send an inquiry and we route it to the right desk.",
+    "sendInquiry": "Send an inquiry"
+  },
+  "inquiry": {
+    "name": "Name",
+    "phone": "Phone (WhatsApp)",
+    "company": "Company name",
+    "type": "Inquiry type",
+    "selectService": "Select a service",
+    "message": "Message (optional)",
+    "attachments": "Attachments (optional, max 10 MB each)",
+    "submit": "Submit inquiry",
+    "submitting": "Sending…",
+    "success": "Thank you. We will contact you within one business day.",
+    "errorName": "Please enter your full name.",
+    "errorPhone": "Please enter your phone or WhatsApp number.",
+    "errorType": "Please select an inquiry type.",
+    "modalIntro": "Tell us about your shipment. We respond within one business day."
+  },
+  "data": {
+    "team": {
+      "zoya": {
+        "name": "Zoya Falak",
+        "role": "Managing Director",
+        "bio": "3 years of experience in tech, Deals with requests."
+      },
+      "ashique": {
+        "name": "Ashique Ali",
+        "role": "Shipping & Logistics",
+        "bio": "20 years in regional forwarding and compliance."
+      },
+      "hasnain": {
+        "name": "Hasnain Ali",
+        "role": "Customs Lead",
+        "bio": "Former carrier planner focused on schedule reliability."
+      },
+      "mohsin": {
+        "name": "Mohsin Ali",
+        "role": "Project Cargo",
+        "bio": "Heavy lift specialist for energy and EPC clients."
+      }
+    },
+    "services": {
+      "international-shipping": {
+        "title": "International Shipping",
+        "summary": "Reliable sea and air freight solutions to destinations worldwide."
+      },
+      "customs-clearance": {
+        "title": "Customs Clearance",
+        "summary": "Fast and accurate customs clearance ensuring smooth movement of your goods."
+      },
+      "hs-code-product-classification": {
+        "title": "HS Code & Product Classification",
+        "summary": "Accurate HS code determination to ensure compliance and minimize delays."
+      },
+      "saber-saso-compliance-support": {
+        "title": "SABER / SASO Compliance Support",
+        "summary": "Expert support for SABER (Saudi Arabia) and SASO (GCC) compliance."
+      },
+      "certification-coordination": {
+        "title": "Certification Coordination",
+        "summary": "We coordinate all required certificates to ensure your shipments meet regulatory requirements."
+      },
+      "sfda-related-requirements": {
+        "title": "SFDA-Related Requirements",
+        "summary": "Professional handling of SFDA related documentation and approvals for regulated products."
+      },
+      "procurement-sourcing": {
+        "title": "Procurement & Sourcing",
+        "summary": "We help you source quality products from trusted manufacturers globally."
+      },
+      "supply-chain-management": {
+        "title": "Supply Chain Management",
+        "summary": "End-to-end supply chain strategies to improve efficiency, reduce costs and drive growth."
+      },
+      "end-to-end-logistics": {
+        "title": "End-to-End Logistics",
+        "summary": "Complete logistics solutions covering every step from origin to final delivery."
+      },
+      "pre-shipment-risk-checking": {
+        "title": "Pre-Shipment Risk Checking",
+        "summary": "We assess and manage risks before shipment to ensure safe and compliant deliveries."
+      }
+    },
+    "jobs": {
+      "ops-coordinator": {
+        "title": "Operations Coordinator",
+        "type": "Full-time",
+        "summary": "Coordinate shipments, carriers and client updates across air and ocean desks."
+      },
+      "customs-specialist": {
+        "title": "Customs Specialist",
+        "type": "Full-time",
+        "summary": "Prepare accurate declarations and manage inspections for import clients."
+      },
+      "project-cargo-lead": {
+        "title": "Project Cargo Lead",
+        "type": "Full-time",
+        "summary": "Lead heavy lift moves including surveys, permits and vendor management."
+      }
+    },
+    "caseStudies": {
+      "middle-east-exhibition-stand": {
+        "title": "Middle East exhibition stand delivery",
+        "cargoType": "Exhibition materials",
+        "excerpt": "Delivering a full stand build to a strict venue window during peak show season."
+      },
+      "offshore-module-delivery": {
+        "title": "Offshore module delivery",
+        "cargoType": "Heavy project cargo",
+        "excerpt": "Moving an oversized module from fabrication yard to port with road permits."
+      }
+    },
+    "gallery": {
+      "1": {
+        "title": "Container terminal operations"
+      },
+      "2": {
+        "title": "Free-zone warehouse"
+      },
+      "3": {
+        "title": "Air cargo build-up"
+      },
+      "4": {
+        "title": "Heavy lift planning"
+      },
+      "5": {
+        "title": "Exhibition inbound"
+      },
+      "6": {
+        "title": "Ocean freight loading"
+      }
+    },
+    "blog": {
+      "navigating-red-sea-reroutes": {
+        "title": "Navigating Red Sea reroutes in 2026",
+        "excerpt": "How shippers are balancing transit time and cost when ocean lanes shift.",
+        "author": "Global Logistics Solutions Operations",
+        "body": "Ocean carriers continue to adjust schedules across the Suez corridor. Global Logistics Solutions monitors sailings daily and advises clients on alternate hubs and air-sea combinations when deadlines are tight.\n\nKey steps: confirm booking cut-offs early, allow buffer at transshipment ports, and align customs documentation before cargo arrives."
+      },
+      "heavy-lift-planning-checklist": {
+        "title": "Heavy lift planning checklist",
+        "excerpt": "Five documents project cargo teams should prepare before the first quote.",
+        "author": "Project Cargo Desk",
+        "body": "Start with accurate weights and dimensions, lifting points, and route surveys. Share GA drawings and any permit restrictions for origin and destination.\n\nOur project desk coordinates engineering reviews, specialized equipment, and port handling windows."
+      }
+    }
+  }
+}

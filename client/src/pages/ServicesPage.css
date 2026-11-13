@@ -1,0 +1,40 @@
+/* ══════════════════════════════════════════════════════════
+   ServicesPage — grid matching Core services on HomePage
+══════════════════════════════════════════════════════════ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.services-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.services-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.services-card h3 {
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+.services-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}

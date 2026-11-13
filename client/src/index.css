@@ -1,0 +1,29 @@
+/* index.css — minimal entry, all design tokens live in styles/tokens.css */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100svh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+main {
+  flex: 1;
+}

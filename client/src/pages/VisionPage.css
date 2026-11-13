@@ -1,0 +1,53 @@
+/* ══════════════════════════════════════════════════════════
+   VisionPage
+══════════════════════════════════════════════════════════ */
+.vision-hero {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.vision-hero__lead {
+  max-width: 48ch;
+  color: #c5dde4;
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+
+/* ── 2030 priorities bullet list ───────────────────────── */
+.vision-priorities {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  max-width: 56ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.vision-priorities li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.vision-priorities li::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.4em;
+}
+
+[dir='rtl'] .vision-priorities li {
+  flex-direction: row-reverse;
+}
+
+[dir='rtl'] .vision-hero__lead {
+  text-align: right;
+}

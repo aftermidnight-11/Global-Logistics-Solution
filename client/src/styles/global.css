@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+@import './tokens.css';
+
+/* ═══════════════════════════════════════════════════════════
+   RESET
+════════════════════════════════════════════════════════════ */
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TYPE SCALE  (clamp-based, applies site-wide)
+════════════════════════════════════════════════════════════ */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: clamp(1.75rem, 4vw + 0.5rem, 2.75rem); }
+h2 { font-size: clamp(1.35rem, 2.5vw + 0.5rem, 2rem); }
+h3 { font-size: clamp(1.1rem, 1.5vw + 0.4rem, 1.3rem); }
+
+p {
+  margin: 0 0 1rem;
+  /* NOTE: removed max-width here — it was restricting stat labels, pills, etc.
+     Use .prose on containers where you want the reading measure limit */
+}
+
+.prose {
+  max-width: var(--measure);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════════════════════════ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Vertical rhythm — one variable to rule them all */
+:root {
+  --section-gap: clamp(3rem, 6vw, 5rem);
+}
+
+.section {
+  padding-block: var(--section-gap);
+  /* anchor links won't be hidden under sticky header */
+  scroll-margin-top: calc(var(--topbar-height) + var(--header-height) + 0.5rem);
+}
+
+.section--band {
+  background: var(--hero-band);
+  color: #e6f2f5;
+}
+
+.section--band a {
+  color: #5fc0da;
+}
+
+.section--band h1,
+.section--band h2,
+.section--band h3 {
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BUTTONS
+════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Primary — orange fill, white text (WCAG AA: 4.7:1) */
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255, 107, 44, 0.4);
+}
+
+/* Outline — transparent bg, accent border */
+.btn--outline {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn--outline:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Ghost — subtle border */
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn--ghost:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+/* On-dark — orange on dark hero band */
+.btn--on-dark {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.btn--on-dark:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 4px 14px rgba(255, 107, 44, 0.5);
+}
+
+/* Ghost variant on dark backgrounds */
+.btn--ghost-dark {
+  background: transparent;
+  color: #e6f2f5;
+  border-color: #5fc0da;
+}
+
+.btn--ghost-dark:hover {
+  background: rgba(95, 192, 218, 0.15);
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CARDS
+════════════════════════════════════════════════════════════ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* ── Stat cards ────────────────────────────────────────────── */
+.stat-card {
+  border-left: 4px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.stat-card .stat-n,
+.home-stats__n,
+.about-stat-n {
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1;
+}
+
+.stat-card .stat-l,
+.home-stats__l,
+.about-stat-l {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UTILITY
+════════════════════════════════════════════════════════════ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Network / pill chips ──────────────────────────────────── */
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RTL
+════════════════════════════════════════════════════════════ */
+html[dir='rtl'],
+[dir='rtl'] {
+  font-family: 'IBM Plex Sans', 'Noto Sans Arabic', system-ui, sans-serif;
+}
+
+[dir='rtl'] h1,
+[dir='rtl'] h2,
+[dir='rtl'] h3,
+[dir='rtl'] h4 {
+  font-family: 'Archivo', 'Noto Sans Arabic', 'Arial Narrow', sans-serif;
+}
+
+[dir='rtl'] .btn {
+  flex-direction: row-reverse;
+}
+
+[dir='rtl'] .card {
+  text-align: right;
+}
+
+[dir='rtl'] p {
+  text-align: right;
+}
+
+[dir='rtl'] .stat-card {
+  border-left: none;
+  border-right: 4px solid var(--accent);
+  align-items: flex-end;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE (mobile-first breakpoints)
+════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .container {
+    width: min(100%, 100% - 1.5rem);
+  }
+
+  .btn {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* ── Reduced-motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

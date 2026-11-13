@@ -1,0 +1,22 @@
+.cookie-banner {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  max-width: 520px;
+  margin-inline: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow);
+  z-index: 150;
+  font-size: 0.9rem;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}

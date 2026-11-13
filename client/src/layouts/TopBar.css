@@ -1,0 +1,75 @@
+/* ══════════════════════════════════════════════════════════
+   TopBar — contact strip at the very top
+══════════════════════════════════════════════════════════ */
+.topbar {
+  background: var(--hero-band);
+  color: #c5dde4;
+  font-size: 0.82rem;
+  min-height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+}
+
+.topbar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  padding-block: 0.4rem;
+}
+
+.topbar__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.5rem;
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
+.topbar__link--admin {
+  color: #ff9d6c !important;
+  font-weight: 600;
+}
+
+.topbar__link--admin:hover {
+  color: #fff !important;
+}
+
+.topbar a {
+  color: #9cb9c3;
+  white-space: nowrap;
+}
+
+.topbar a:hover {
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    font-size: 0.78rem;
+    padding-block: 0.25rem;
+  }
+
+  .topbar__inner {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  .topbar__contacts {
+    justify-content: center;
+    text-align: center;
+    gap: 0.25rem 0.75rem;
+  }
+
+  .topbar__right {
+    justify-content: center;
+  }
+}

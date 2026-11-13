@@ -1,0 +1,52 @@
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.inquiry-form__field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 0.25rem;
+}
+
+.inquiry-form__field input,
+.inquiry-form__field select,
+.inquiry-form__field textarea {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.inquiry-form__field input:focus-visible,
+.inquiry-form__field select:focus-visible,
+.inquiry-form__field textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.inquiry-form__error {
+  color: #b42318;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.inquiry-form__success {
+  padding: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.inquiry-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+}
