@@ -1,0 +1,20 @@
+[
+  {
+    "id": "dubai",
+    "name": "Dubai HQ",
+    "address": "Jebel Ali Free Zone, Dubai, UAE",
+    "email": "sales@global-logisticssolution.com",
+    "phone": "+971 4 000 0000",
+    "hours": "Sun–Thu, 8:00–18:00 GST",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.178509744!2d55.0273!3d25.0657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDAzJzU2LjUiTiA1NcKwMDEnMzguMyJF!5e0!3m2!1sen!2s!4v1"
+  },
+  {
+    "id": "singapore",
+    "name": "Singapore Hub",
+    "address": "Tuas Avenue, Singapore",
+    "email": "import@global-logisticssolution.com",
+    "phone": "+65 6000 0000",
+    "hours": "Mon–Fri, 9:00–18:00 SGT",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.75!2d103.65!3d1.32!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTknMTIuMCJOIDEwM8KwMzknMDAuMCJF!5e0!3m2!1sen!2s!4v1"
+  }
+]
