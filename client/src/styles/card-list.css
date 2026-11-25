@@ -17,12 +17,13 @@
   gap: 0.4rem;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, box-shadow 0.25s ease;
 }
 
 .entry-card:hover {
-  border-color: var(--secondary);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px rgba(11, 37, 48, 0.12);
 }
 
 .entry-card__meta {
@@ -59,6 +60,13 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--secondary);
+  box-shadow: 0 10px 24px rgba(11, 37, 48, 0.1);
 }
 
 .job-card__title {

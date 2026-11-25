@@ -13,7 +13,7 @@
 /* ── Layout Shell ── */
 .admin-layout {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 240px 1fr;
   min-height: 100vh;
   background: #f0f4f8;
   position: relative;
@@ -1166,11 +1166,11 @@ select.status-pill {
     grid-template-columns: 1fr;
   }
   .admin-layout {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 220px 1fr;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .admin-layout {
     grid-template-columns: 1fr;
   }
@@ -1180,7 +1180,7 @@ select.status-pill {
     top: 0;
     left: 0;
     height: 100%;
-    width: 240px;
+    width: 260px;
     transform: translateX(-100%);
     z-index: 200;
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
@@ -1240,3 +1240,13 @@ select.status-pill {
     font-size: 0.8rem;
   }
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

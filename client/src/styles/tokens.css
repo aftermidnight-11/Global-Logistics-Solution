@@ -4,6 +4,7 @@
   /* ── Colours ──────────────────────────────────────────── */
   --bg:            #f4f8f9;
   --surface:       #ffffff;
+  --surface-alt:   #ebf2f5;
   --text:          #0b2530;
   --text-muted:    #4b6670;
   --border:        #d5e1e5;
@@ -38,6 +39,7 @@
   color-scheme: dark;
   --bg:           #071318;
   --surface:      #0d222b;
+  --surface-alt:  #122d38;
   --text:         #e6f2f5;
   --text-muted:   #9cb9c3;
   --border:       #1c3f4c;
@@ -54,6 +56,7 @@
     color-scheme: dark;
     --bg:           #071318;
     --surface:      #0d222b;
+    --surface-alt:  #122d38;
     --text:         #e6f2f5;
     --text-muted:   #9cb9c3;
     --border:       #1c3f4c;

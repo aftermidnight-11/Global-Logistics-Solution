@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './SiteFooter.css';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export function SiteFooter() {
   const { t } = useTranslation();
   return (
@@ -48,8 +50,14 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="container site-footer__bottom">
-        <span>© {new Date().getFullYear()} {t('footer.copyright')}</span>
-        <Link to="/privacy">{t('footer.privacy')}</Link>
+        <span>© {CURRENT_YEAR} {t('footer.copyright')}</span>
+        <div style={{ display: 'flex', gap: '0.85rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Link to="/privacy">{t('footer.privacy', 'Privacy Policy')}</Link>
+          <span aria-hidden="true" style={{ opacity: 0.5 }}>·</span>
+          <Link to="/terms">{t('footer.terms', 'Terms & Claims')}</Link>
+          <span aria-hidden="true" style={{ opacity: 0.5 }}>·</span>
+          <Link to="/cookies">{t('footer.cookies', 'Cookie Policy')}</Link>
+        </div>
       </div>
     </footer>
   );

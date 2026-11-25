@@ -29,11 +29,13 @@
     "privacy": "Privacy Policy",
     "copyright": "Global Logistics Solutions",
     "linkedin": "LinkedIn",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "terms": "Terms & Claims",
+    "cookies": "Cookie Policy"
   },
   "home": {
     "heroTitle": "Global logistics solution, Your fast freight forwarding",
-    "heroLead": "Air, ocean and project cargo with one accountable team across the Middle East and Asia hubs.",
+    "heroLead": "Air, Ocean, Land and Project Cargo with Accountable Team Worldwide.",
     "ctaQuote": "Request a quote",
     "ctaServices": "Explore services",
     "whyTitle": "Why Global Logistics Solutions",
@@ -125,7 +127,8 @@
   },
   "inquiry": {
     "name": "Name",
-    "phone": "Phone (WhatsApp)",
+    "email": "Email Address",
+    "phone": "Phone / WhatsApp",
     "company": "Company name",
     "type": "Inquiry type",
     "selectService": "Select a service",
@@ -133,11 +136,53 @@
     "attachments": "Attachments (optional, max 10 MB each)",
     "submit": "Submit inquiry",
     "submitting": "Sending…",
-    "success": "Thank you. We will contact you within one business day.",
+    "successTitle": "Quote Request Received!",
+    "success": "Thank you. We have sent an email confirmation to your inbox, and our freight team will contact you within 1 business day.",
     "errorName": "Please enter your full name.",
+    "errorEmail": "Please enter your business or personal email.",
     "errorPhone": "Please enter your phone or WhatsApp number.",
     "errorType": "Please select an inquiry type.",
     "modalIntro": "Tell us about your shipment. We respond within one business day."
+  },
+  "tracker": {
+    "badge": "Live Tracking",
+    "title": "Track Your Shipment",
+    "subtitle": "Enter your Bill of Lading, AWB, or GLS tracking number for real-time visibility.",
+    "placeholder": "Enter Tracking No. (e.g. GLS-882914, GLS-901423)",
+    "button": "Track Shipment",
+    "testReal": "Test Real Shipments",
+    "errorEmpty": "Please enter a tracking reference or container number."
+  },
+  "faq": {
+    "badge": "Knowledge Base",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers regarding freight pricing, customs clearance, restricted commodities, and transit times.",
+    "q1": "How are freight shipping rates and chargeable weights calculated?",
+    "a1": "Freight charges depend on whichever is greater: actual gross weight or volumetric (dimensional) weight. For air freight, the volumetric formula is (Length × Width × Height in cm) / 6000. For ocean LCL, rates are billed per CBM (cubic meter) or 1,000 kg. For overland GCC trucking, standard full truckload (FTL) rates apply or CBM-based LTL pricing.",
+    "q2": "What commodities are restricted, prohibited, or subject to special permits?",
+    "a2": "Prohibited items include narcotics, unapproved pharmaceuticals, weapons, fireworks, and counterfeit goods. Regulated items requiring pre-approval include lithium batteries (requiring UN 38.3 test summaries & MSDS), chemicals/dangerous goods (requiring IATA/IMDG declarations), food and cosmetics (requiring SFDA pre-registration), and electronics/machinery (requiring SABER PCoC/SCoC).",
+    "q3": "What documentation is required for import customs clearance in Saudi Arabia?",
+    "a3": "Standard import documentation includes: 1) Original Commercial Invoice with HS codes; 2) Detailed Packing List; 3) Clean Bill of Lading (B/L) or Air Waybill (AWB); 4) Attested Certificate of Origin; 5) SABER Shipment Certificate of Conformity (SCoC); and 6) SFDA import permit for food, medical, or cosmetics. Our licensed FASAH brokers can handle the full clearance workflow.",
+    "q4": "What are your typical transit times across Air, Ocean, and Land freight?",
+    "a4": "Typical transit times: Air Freight: 1–3 business days for Express, 3–5 days for Standard. Overland GCC Trucking: 12–24 hours domestic intercity, 2–4 days cross-border. Ocean Freight: 14–22 days on Asia–Arabian Gulf routes, 18–28 days Europe–Middle East, and 28–38 days Americas–Middle East.",
+    "q5": "Can I track my shipment online, and how do I receive live status updates?",
+    "a5": "Yes! You can enter your tracking reference (such as GLS-882914 or your Bill of Lading / AWB number) in the Live Shipment Tracker at the top of our homepage. We also provide automated SMS, WhatsApp, and email milestone notifications at each stage of transit.",
+    "q6": "How fast can I get a quotation, and how do I set up a corporate credit account?",
+    "a6": "Click 'Get a Quote' anywhere on the site or email sales@global-logisticssolution.com. We respond within 24 hours. For regular commercial shippers, our accounts department (accounts@global-logisticssolution.com) offers 30-day corporate credit facilities upon credit verification."
+  },
+  "quoteBanner": {
+    "tag": "Worldwide Freight & Customs",
+    "title": "Ready to Ship with Total Visibility & Zero Friction?",
+    "desc": "Get competitive rates for Air, Ocean, Land freight and rapid customs clearance. Guaranteed response from our logistics specialists within 24 hours.",
+    "note": "Direct Desk:"
+  },
+  "notFound": {
+    "title": "Page or Cargo Off-Course",
+    "message": "The page you are looking for might have been moved, renamed, or is temporarily unreachable. Let us help guide you back on route.",
+    "backHome": "Back to Homepage",
+    "track": "Track Shipment",
+    "services": "Our Services",
+    "contact": "Contact Us"
   },
   "data": {
     "team": {

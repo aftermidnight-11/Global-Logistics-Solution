@@ -41,10 +41,17 @@
 .site-footer__links a {
   color: #9cb9c3;
   text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+  display: inline-block;
 }
 
 .site-footer__links a:hover {
   color: #fff;
+  transform: translateX(3px);
+}
+
+[dir='rtl'] .site-footer__links a:hover {
+  transform: translateX(-3px);
 }
 
 .site-footer__bottom {

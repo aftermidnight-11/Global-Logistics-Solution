@@ -64,7 +64,8 @@
   width: 100%;
   padding: 0.75rem 1rem;
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  min-height: 44px;
   color: var(--text);
   background: var(--bg);
   border: 1px solid var(--border);
@@ -152,6 +153,18 @@
   background: #e6f7ec;
   color: #1e7e34;
   border: 1px solid #c3e6cb;
+}
+
+[data-theme='dark'] .auth-alert--error {
+  background: rgba(220, 38, 38, 0.15);
+  color: #fca5a5;
+  border-color: rgba(220, 38, 38, 0.4);
+}
+
+[data-theme='dark'] .auth-alert--success {
+  background: rgba(34, 197, 94, 0.15);
+  color: #86efac;
+  border-color: rgba(34, 197, 94, 0.4);
 }
 
 @media (max-width: 480px) {

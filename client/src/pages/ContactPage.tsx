@@ -27,13 +27,20 @@ export function ContactPage() {
             id: 'dubai',
             name: 'Dubai HQ',
             address: 'Jebel Ali Free Zone, Dubai, UAE',
-            email: 'uae@global-logisticssolution.com',
+            email: 'sales@global-logisticssolution.com',
             phone: '+971 4 000 0000',
             hours: 'Sun–Thu, 8:00–18:00 GST',
           },
         ])
       );
   }, []);
+
+  const departmentEmails = [
+    { title: 'Sales & Inquiries', email: 'sales@global-logisticssolution.com', desc: 'Freight quotes, pricing, and partnerships' },
+    { title: 'Imports & Operations', email: 'import@global-logisticssolution.com', desc: 'Customs clearance, import filings, and tracking' },
+    { title: 'Accounts & Billing', email: 'accounts@global-logisticssolution.com', desc: 'Invoices, receipts, and finance inquiries' },
+    { title: 'General Inquiries', email: 'info@global-logisticssolution.com', desc: 'General questions and corporate communications' },
+  ];
 
   return (
     <>
@@ -56,8 +63,12 @@ export function ContactPage() {
                       <span style={{ marginInline: '0.5rem', color: 'var(--border)' }}>·</span>
                       <a href={`tel:${o.phone.replace(/\s/g, '')}`}>{o.phone}</a>
                     </p>
-                    <p style={{ color: 'var(--text-muted)', margin: '0.35rem 0 0', fontSize: '0.85rem' }}>
-                      🕒 {o.hours}
+                    <p style={{ color: 'var(--text-muted)', margin: '0.35rem 0 0', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                      <span>{o.hours}</span>
                     </p>
                     {o.mapEmbedUrl && (
                       <iframe
@@ -72,6 +83,25 @@ export function ContactPage() {
                     )}
                   </article>
                 ))}
+              </div>
+
+              <div style={{ marginTop: '2rem' }}>
+                <h2 style={{ fontSize: '1.3rem', marginBottom: '1rem' }}>Direct Department Contacts</h2>
+                <div style={{ display: 'grid', gap: '0.75rem' }}>
+                  {departmentEmails.map((dept) => (
+                    <div
+                      key={dept.email}
+                      className="card"
+                      style={{ padding: '1rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.2rem' }}
+                    >
+                      <strong style={{ fontSize: '0.95rem', color: 'var(--text)' }}>{dept.title}</strong>
+                      <p style={{ margin: '0.1rem 0', fontSize: '0.84rem', color: 'var(--text-muted)' }}>{dept.desc}</p>
+                      <a href={`mailto:${dept.email}`} style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--accent)' }}>
+                        {dept.email}
+                      </a>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 

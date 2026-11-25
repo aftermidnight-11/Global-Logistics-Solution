@@ -90,7 +90,15 @@ export function CareerPage({ embedded }: CareerPageProps) {
 
           <h2 style={{ marginTop: '2rem' }}>{t('career.mailUs')}</h2>
           {status === 'success' ? (
-            <p role="status">{t('career.successMsg')}</p>
+            <div className="inquiry-form__success" role="status" style={{ maxWidth: 520 }}>
+              <div className="inquiry-form__success-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Application Submitted!</h3>
+              <p>{t('career.successMsg', 'Thank you for your application. Our recruitment and HR team will review your qualifications and contact you shortly.')}</p>
+            </div>
           ) : (
             <form className="card" style={{ maxWidth: 520 }} onSubmit={onSubmit}>
               <div className="inquiry-form__honeypot" aria-hidden>

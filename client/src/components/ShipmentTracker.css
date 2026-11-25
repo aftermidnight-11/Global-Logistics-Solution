@@ -1,0 +1,296 @@
+/* ═══════════════════════════════════════════════════════════
+   SHIPMENT TRACKER — RESPONSIVE & ACCESSIBLE
+════════════════════════════════════════════════════════════ */
+
+.shipment-tracker-section {
+  padding-block: 2.5rem 3.5rem;
+  background: var(--bg);
+}
+
+.shipment-tracker-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  box-shadow: var(--shadow);
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.shipment-tracker-card__header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.shipment-tracker-badge {
+  display: inline-block;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.shipment-tracker-card__header h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
+.shipment-tracker-card__header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ── Form ── */
+.shipment-tracker-form {
+  margin-bottom: 1rem;
+}
+
+.shipment-tracker-input-wrap {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  padding: 0.4rem 0.5rem 0.4rem 1rem;
+  gap: 0.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shipment-tracker-input-wrap:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 107, 44, 0.15);
+}
+
+.shipment-tracker-icon {
+  font-size: 1.15rem;
+  opacity: 0.7;
+}
+
+.shipment-tracker-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  min-width: 0;
+}
+
+.shipment-tracker-btn {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 9px;
+}
+
+.shipment-tracker-error {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0;
+}
+
+/* ── Test sample chips ── */
+.shipment-tracker-samples {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.shipment-tracker-chip {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.shipment-tracker-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Result Card ── */
+.shipment-result {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  animation: fadeInTracker 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInTracker {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.shipment-result__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.shipment-result__num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-right: 0.75rem;
+}
+
+.shipment-result__mode {
+  font-size: 0.8rem;
+  background: rgba(31, 95, 115, 0.12);
+  color: var(--secondary);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.shipment-status-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+}
+
+.shipment-status-badge--in-transit,
+.shipment-status-badge--vessel-arrived {
+  background: rgba(59, 130, 246, 0.15);
+  color: #2563eb;
+}
+
+.shipment-status-badge--delivered,
+.shipment-status-badge--customs-cleared {
+  background: rgba(16, 185, 129, 0.15);
+  color: #059669;
+}
+
+/* ── Meta Grid ── */
+.shipment-result__meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.shipment-meta-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+  font-weight: 600;
+}
+
+.shipment-meta-val {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.shipment-meta-val--highlight {
+  color: var(--accent);
+}
+
+/* ── Milestones Timeline ── */
+.shipment-milestones h3 {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.shipment-milestones__list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.shipment-milestones__list::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 6px;
+  width: 2px;
+  background: var(--border);
+}
+
+.shipment-milestone {
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.shipment-milestone:last-child {
+  padding-bottom: 0;
+}
+
+.shipment-milestone__dot {
+  position: absolute;
+  top: 4px;
+  left: -1.5rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--border);
+  box-sizing: border-box;
+}
+
+.shipment-milestone.is-completed .shipment-milestone__dot {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+.shipment-milestone.is-pending .shipment-milestone__dot {
+  background: var(--surface);
+  border-color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.shipment-milestone__body strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.shipment-milestone.is-pending .shipment-milestone__body strong {
+  color: var(--text-muted);
+}
+
+.shipment-milestone__sub {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 580px) {
+  .shipment-tracker-input-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.75rem;
+  }
+  .shipment-tracker-btn {
+    width: 100%;
+  }
+}

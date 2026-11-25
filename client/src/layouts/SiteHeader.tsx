@@ -111,58 +111,130 @@ export function SiteHeader() {
                 </li>
               )
             )}
-            <li className="site-header__item site-header__mobile-auth">
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? 'site-header__link is-active' : 'site-header__link')}
-                onClick={() => setMobileOpen(false)}
-              >
-                Login
-              </NavLink>
-            </li>
-            <li className="site-header__item site-header__mobile-auth">
-              <NavLink
-                to="/register"
-                className={({ isActive }) => (isActive ? 'site-header__link is-active' : 'site-header__link')}
-                onClick={() => setMobileOpen(false)}
-              >
-                Register
-              </NavLink>
-            </li>
-            {(isLoggedIn || isAdmin) && (
-              <li className="site-header__item site-header__mobile-auth">
-                <NavLink
-                  to={isAdmin ? '/admin' : '/account'}
-                  className={({ isActive }) => (isActive ? 'site-header__link is-active' : 'site-header__link')}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {isAdmin ? '⚙ Admin Dashboard' : '👤 My Account'}
-                </NavLink>
-              </li>
+            {isLoggedIn || isAdmin ? (
+              <>
+                <li className="site-header__item site-header__mobile-auth">
+                  <NavLink
+                    to={isAdmin ? "/admin?section=account" : "/account"}
+                    className={({ isActive }) => (isActive ? 'site-header__link is-active' : 'site-header__link')}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    My Account
+                  </NavLink>
+                </li>
+                {isAdmin && (
+                  <li className="site-header__item site-header__mobile-auth">
+                    <NavLink
+                      to="/admin"
+                      className={({ isActive }) => (isActive ? 'site-header__link is-active' : 'site-header__link')}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      Admin Dashboard
+                    </NavLink>
+                  </li>
+                )}
+                <li className="site-header__item site-header__mobile-auth">
+                  <button
+                    type="button"
+                    className="site-header__link"
+                    style={{ background: 'none', border: 'none', textAlign: 'left', width: '100%', cursor: 'pointer' }}
+                    onClick={() => {
+                      localStorage.removeItem('harborline_auth_token');
+                      localStorage.removeItem('harborline_admin_token');
+                      localStorage.removeItem('harborline_user');
+                      window.dispatchEvent(new Event('storage'));
+                      setMobileOpen(false);
+                      window.location.href = '/login';
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="site-header__item site-header__mobile-auth">
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) => (isActive ? 'site-header__link is-active' : 'site-header__link')}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li className="site-header__item site-header__mobile-auth">
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) => (isActive ? 'site-header__link is-active' : 'site-header__link')}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </>
             )}
           </ul>
         </nav>
 
         <div className="site-header__actions">
           {isLoggedIn || isAdmin ? (
-            <Link
-              to={isAdmin ? '/admin' : '/account'}
-              className="btn btn--outline site-header__login-btn"
-              style={{ padding: '0.45rem 0.85rem', fontSize: '0.85rem' }}
-            >
-              {isAdmin ? '⚙ Admin' : '👤 My Account'}
-            </Link>
+            <>
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className="site-header__text-btn site-header__text-btn--admin"
+                >
+                  Admin
+                </Link>
+              )}
+              <Link
+                to={isAdmin ? "/admin?section=account" : "/account"}
+                className="site-header__text-btn"
+              >
+                My Account
+              </Link>
+              <button
+                type="button"
+                className="site-header__logout-btn"
+                onClick={() => {
+                  localStorage.removeItem('harborline_auth_token');
+                  localStorage.removeItem('harborline_admin_token');
+                  localStorage.removeItem('harborline_user');
+                  window.dispatchEvent(new Event('storage'));
+                  window.location.href = '/login';
+                }}
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <Link
               to="/login"
-              className="btn btn--outline site-header__login-btn"
-              style={{ padding: '0.45rem 0.85rem', fontSize: '0.85rem' }}
+              className="site-header__text-btn"
             >
               Login
             </Link>
           )}
-          <button type="button" className="site-header__icon-btn" onClick={toggle} aria-label={t('nav.toggleTheme')}>
-            ◐
+          <button
+            type="button"
+            className="site-header__icon-btn"
+            onClick={toggle}
+            aria-label={t('nav.toggleTheme')}
+            title={t('nav.toggleTheme')}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
           </button>
           <button
             type="button"
@@ -172,8 +244,8 @@ export function SiteHeader() {
           >
             {i18n.language === 'ar' ? 'EN' : 'AR'}
           </button>
-          <button type="button" className="btn btn--primary" onClick={onChat}>
-            {t('nav.letsChat')}
+          <button type="button" className="btn btn--primary site-header__quote-btn" onClick={onChat}>
+            {t('home.ctaQuote', 'Get a Quote')}
           </button>
         </div>
       </div>

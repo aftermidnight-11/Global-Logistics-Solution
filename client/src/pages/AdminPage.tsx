@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useId, type FormEvent } from 'react';
-import { Navigate, useNavigate, Link } from 'react-router-dom';
+import { useState, useEffect, useCallback, useId, type FormEvent, type ReactNode } from 'react';
+import { Navigate, useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { PageMeta } from '@/components/PageMeta';
 import { postJson, getJson, putJson, patchJson, deleteJson } from '@/api/client';
 import './AdminPage.css';
@@ -52,16 +52,31 @@ export type BlogItem = {
   createdAt?: string;
 };
 
-type SectionType = 'dashboard' | 'inquiries' | 'careers' | 'blog';
+type SectionType = 'dashboard' | 'account' | 'inquiries' | 'careers' | 'blog';
+
+const TODAY_ISO = new Date().toISOString().split('T')[0];
 
 export function AdminPage() {
   const [token, setToken] = useState<string>(() => localStorage.getItem('harborline_admin_token') || '');
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [activeSection, setActiveSection] = useState<SectionType>('dashboard');
+  const [activeSection, setActiveSection] = useState<SectionType>(() => {
+    const sec = searchParams.get('section');
+    if (sec === 'account' || sec === 'inquiries' || sec === 'careers' || sec === 'blog') {
+      return sec;
+    }
+    return 'dashboard';
+  });
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  // Admin Account section states
+  const [adminPw, setAdminPw] = useState({ current: '', next: '', confirm: '' });
+  const [adminPwLoading, setAdminPwLoading] = useState(false);
+  const [adminPwMsg, setAdminPwMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const [inquiries, setInquiries] = useState<InquiryItem[]>([]);
   const [careers, setCareers] = useState<CareerItem[]>([]);
@@ -293,11 +308,87 @@ export function AdminPage() {
     }
   })();
 
-  const navItems: { id: SectionType; icon: string; label: string }[] = [
-    { id: 'dashboard', icon: '⊞', label: 'Dashboard' },
-    { id: 'inquiries', icon: '✉️', label: 'Messages' },
-    { id: 'careers', icon: '👤', label: 'Careers & Resumes' },
-    { id: 'blog', icon: '✏️', label: 'Blog & CMS' },
+  const handleAdminChangePassword = async (e: FormEvent) => {
+    e.preventDefault();
+    setAdminPwMsg(null);
+    if (adminPw.next !== adminPw.confirm) {
+      setAdminPwMsg({ type: 'error', text: 'New passwords do not match.' });
+      return;
+    }
+    if (adminPw.next.length < 6) {
+      setAdminPwMsg({ type: 'error', text: 'New password must be at least 6 characters.' });
+      return;
+    }
+    setAdminPwLoading(true);
+    try {
+      await postJson(
+        '/api/auth/change-password',
+        { currentPassword: adminPw.current, newPassword: adminPw.next },
+        authHeaders()
+      );
+      setAdminPwMsg({ type: 'success', text: 'Admin password updated successfully.' });
+      setAdminPw({ current: '', next: '', confirm: '' });
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Failed to update password.';
+      setAdminPwMsg({ type: 'error', text: msg });
+    } finally {
+      setAdminPwLoading(false);
+    }
+  };
+
+  const navItems: { id: SectionType; icon: ReactNode; label: string }[] = [
+    {
+      id: 'dashboard',
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" />
+          <rect x="14" y="3" width="7" height="7" />
+          <rect x="14" y="14" width="7" height="7" />
+          <rect x="3" y="14" width="7" height="7" />
+        </svg>
+      ),
+      label: 'Dashboard',
+    },
+    {
+      id: 'account',
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      ),
+      label: 'Admin Account',
+    },
+    {
+      id: 'inquiries',
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+      ),
+      label: 'Messages',
+    },
+    {
+      id: 'careers',
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </svg>
+      ),
+      label: 'Careers & Resumes',
+    },
+    {
+      id: 'blog',
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M12 20h9" />
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+        </svg>
+      ),
+      label: 'Blog & CMS',
+    },
   ];
 
   const navigate_to = (section: SectionType) => {
@@ -305,6 +396,11 @@ export function AdminPage() {
     setSearch('');
     setStatusFilter('all');
     setSidebarOpen(false);
+    if (section === 'dashboard') {
+      setSearchParams({});
+    } else {
+      setSearchParams({ section });
+    }
   };
 
   return (
@@ -317,10 +413,16 @@ export function AdminPage() {
       )}
 
       <div className="admin-layout">
-        {/* ── SIDEBAR ── */}
+        {/* ── SIDEBAR (Used in Admin section ONLY) ── */}
         <aside className={`admin-sidebar ${sidebarOpen ? 'admin-sidebar--open' : ''}`}>
           <div className="admin-sidebar__brand">
-            <span className="admin-sidebar__brand-icon">⚓</span>
+            <span className="admin-sidebar__brand-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="5" r="3" />
+                <line x1="12" y1="22" x2="12" y2="8" />
+                <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+              </svg>
+            </span>
             <span className="admin-sidebar__brand-name">Global Logistics</span>
           </div>
 
@@ -333,7 +435,9 @@ export function AdminPage() {
                     className={`admin-sidebar__link ${activeSection === item.id ? 'admin-sidebar__link--active' : ''}`}
                     onClick={() => navigate_to(item.id)}
                   >
-                    <span className="admin-sidebar__icon">{item.icon}</span>
+                    <span className="admin-sidebar__icon" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                      {item.icon}
+                    </span>
                     <span>{item.label}</span>
                     {item.id === 'inquiries' && newInquiries > 0 && (
                       <span className="admin-sidebar__badge">{newInquiries}</span>
@@ -353,7 +457,13 @@ export function AdminPage() {
               className="admin-sidebar__link"
               style={{ color: '#9cb9c3', marginBottom: '0.25rem' }}
             >
-              <span className="admin-sidebar__icon">🌐</span>
+              <span className="admin-sidebar__icon" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </span>
               <span>View Website</span>
             </Link>
             <button
@@ -361,7 +471,13 @@ export function AdminPage() {
               className="admin-sidebar__link admin-sidebar__link--logout"
               onClick={handleLogout}
             >
-              <span className="admin-sidebar__icon">⏻</span>
+              <span className="admin-sidebar__icon" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  <polyline points="16 17 21 12 16 7" />
+                  <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+              </span>
               <span>Sign Out</span>
             </button>
           </div>
@@ -377,8 +493,13 @@ export function AdminPage() {
                 className="admin-topbar__hamburger"
                 onClick={() => setSidebarOpen((v) => !v)}
                 aria-label="Toggle sidebar"
+                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                ☰
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
               </button>
               <h1 className="admin-topbar__title">
                 {navItems.find((n) => n.id === activeSection)?.label ?? 'Dashboard'}
@@ -386,7 +507,12 @@ export function AdminPage() {
             </div>
             <div className="admin-topbar__right">
               <div className="admin-topbar__search">
-                <span className="admin-topbar__search-icon">🔍</span>
+                <span className="admin-topbar__search-icon" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </span>
                 <input
                   type="search"
                   placeholder="Search records…"
@@ -400,10 +526,20 @@ export function AdminPage() {
                 onClick={loadAllData}
                 disabled={loading}
                 title="Refresh data"
+                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                {loading ? '⟳' : '↻'}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }}>
+                  <polyline points="23 4 23 10 17 10" />
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                </svg>
               </button>
-              <div className="admin-topbar__user">
+              <button
+                type="button"
+                onClick={() => navigate_to('account')}
+                className="admin-topbar__user"
+                title="Admin Account & Profile"
+                style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: '0.25rem 0.5rem' }}
+              >
                 <div className="admin-topbar__avatar">
                   {currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : 'A'}
                 </div>
@@ -415,7 +551,7 @@ export function AdminPage() {
                     {currentUser?.email || 'admin@global-logisticssolution.com'}
                   </span>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -439,7 +575,12 @@ export function AdminPage() {
               {/* Stat cards */}
               <div className="admin-stat-grid">
                 <div className="admin-stat-card">
-                  <div className="admin-stat-card__icon admin-stat-card__icon--blue">📋</div>
+                  <div className="admin-stat-card__icon admin-stat-card__icon--blue">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                      <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                    </svg>
+                  </div>
                   <div className="admin-stat-card__body">
                     <div className="admin-stat-card__num">{inquiries.length}</div>
                     <div className="admin-stat-card__label">Total Inquiries</div>
@@ -447,7 +588,12 @@ export function AdminPage() {
                   <div className="admin-stat-card__wave" />
                 </div>
                 <div className="admin-stat-card">
-                  <div className="admin-stat-card__icon admin-stat-card__icon--orange">🔔</div>
+                  <div className="admin-stat-card__icon admin-stat-card__icon--orange">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                  </div>
                   <div className="admin-stat-card__body">
                     <div className="admin-stat-card__num">{newInquiries}</div>
                     <div className="admin-stat-card__label">New Inquiries</div>
@@ -455,7 +601,12 @@ export function AdminPage() {
                   <div className="admin-stat-card__wave" />
                 </div>
                 <div className="admin-stat-card">
-                  <div className="admin-stat-card__icon admin-stat-card__icon--green">✅</div>
+                  <div className="admin-stat-card__icon admin-stat-card__icon--green">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                  </div>
                   <div className="admin-stat-card__body">
                     <div className="admin-stat-card__num">{resolvedInquiries}</div>
                     <div className="admin-stat-card__label">Resolved</div>
@@ -463,7 +614,12 @@ export function AdminPage() {
                   <div className="admin-stat-card__wave" />
                 </div>
                 <div className="admin-stat-card">
-                  <div className="admin-stat-card__icon admin-stat-card__icon--teal">👤</div>
+                  <div className="admin-stat-card__icon admin-stat-card__icon--teal">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
                   <div className="admin-stat-card__body">
                     <div className="admin-stat-card__num">{careers.length}</div>
                     <div className="admin-stat-card__label">Applications</div>
@@ -606,6 +762,76 @@ export function AdminPage() {
                     </table>
                   )}
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* ── ACCOUNT SECTION ── */}
+          {activeSection === 'account' && (
+            <div className="admin-content">
+              <div className="admin-chart-card" style={{ maxWidth: 520 }}>
+                <div className="admin-chart-card__head">
+                  <h3>Admin Account</h3>
+                  <span className="admin-chart-card__sub">Profile &amp; Security</span>
+                </div>
+                <dl style={{ display: 'grid', gap: '0.6rem', margin: '0 0 1.5rem' }}>
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
+                    <dt style={{ fontWeight: 600, minWidth: 100, fontSize: '0.88rem', color: 'var(--text-muted)' }}>Name</dt>
+                    <dd style={{ margin: 0 }}>{currentUser?.name || '—'}</dd>
+                  </div>
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
+                    <dt style={{ fontWeight: 600, minWidth: 100, fontSize: '0.88rem', color: 'var(--text-muted)' }}>Email</dt>
+                    <dd style={{ margin: 0 }}>{currentUser?.email || '—'}</dd>
+                  </div>
+                </dl>
+                <h4 style={{ margin: '0 0 1rem', fontSize: '1rem' }}>Change Password</h4>
+                {adminPwMsg && (
+                  <div className={`admin-alert admin-alert--${adminPwMsg.type}`} style={{ marginBottom: '1rem' }}>
+                    {adminPwMsg.text}
+                  </div>
+                )}
+                <form onSubmit={handleAdminChangePassword} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: 600, fontSize: '0.88rem', marginBottom: '0.3rem' }}>Current Password</label>
+                    <input
+                      type="password"
+                      value={adminPw.current}
+                      onChange={(e) => setAdminPw((p) => ({ ...p, current: e.target.value }))}
+                      required
+                      style={{ width: '100%', padding: '0.6rem 0.8rem', borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', background: 'var(--bg)', color: 'var(--text)', boxSizing: 'border-box' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: 600, fontSize: '0.88rem', marginBottom: '0.3rem' }}>New Password</label>
+                    <input
+                      type="password"
+                      value={adminPw.next}
+                      onChange={(e) => setAdminPw((p) => ({ ...p, next: e.target.value }))}
+                      required
+                      minLength={6}
+                      style={{ width: '100%', padding: '0.6rem 0.8rem', borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', background: 'var(--bg)', color: 'var(--text)', boxSizing: 'border-box' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: 600, fontSize: '0.88rem', marginBottom: '0.3rem' }}>Confirm New Password</label>
+                    <input
+                      type="password"
+                      value={adminPw.confirm}
+                      onChange={(e) => setAdminPw((p) => ({ ...p, confirm: e.target.value }))}
+                      required
+                      minLength={6}
+                      style={{ width: '100%', padding: '0.6rem 0.8rem', borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', background: 'var(--bg)', color: 'var(--text)', boxSizing: 'border-box' }}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn btn--primary"
+                    disabled={adminPwLoading}
+                    style={{ alignSelf: 'flex-start', marginTop: '0.25rem' }}
+                  >
+                    {adminPwLoading ? 'Updating…' : 'Update Password'}
+                  </button>
+                </form>
               </div>
             </div>
           )}
@@ -1182,7 +1408,7 @@ export function AdminPage() {
                     name="publishedAt"
                     type="date"
                     required
-                    defaultValue={blogModal.item?.publishedAt || new Date().toISOString().split('T')[0]}
+                    defaultValue={blogModal.item?.publishedAt || TODAY_ISO}
                   />
                 </div>
               </div>

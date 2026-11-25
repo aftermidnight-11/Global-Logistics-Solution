@@ -1,4 +1,4 @@
-import { useState, useId, type FormEvent } from 'react';
+import { useState, useEffect, useId, type FormEvent } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { PageMeta } from '@/components/PageMeta';
 import { postJson } from '@/api/client';
@@ -26,6 +26,15 @@ export function LoginPage() {
   const navigate = useNavigate();
   const formId = useId();
 
+  // If already logged in, redirect directly to user page or requested redirect
+  useEffect(() => {
+    const existingToken = localStorage.getItem('harborline_auth_token') || localStorage.getItem('harborline_admin_token');
+    if (existingToken) {
+      const redirectParam = searchParams.get('redirect');
+      navigate(redirectParam || '/account', { replace: true });
+    }
+  }, [navigate, searchParams]);
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setLoading(true);
@@ -47,7 +56,7 @@ export function LoginPage() {
 
         window.dispatchEvent(new Event('storage'));
 
-        const redirectTo = searchParams.get('redirect') || (res.user.role === 'admin' ? '/admin' : '/');
+        const redirectTo = searchParams.get('redirect') || (res.user.role === 'admin' ? '/admin' : '/account');
         navigate(redirectTo);
       }
     } catch (err: unknown) {

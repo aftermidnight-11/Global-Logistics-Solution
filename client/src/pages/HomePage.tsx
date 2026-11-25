@@ -5,6 +5,7 @@ import { PageMeta, organizationJsonLd } from '@/components/PageMeta';
 import { useInquiryModal } from '@/hooks/useInquiryModal';
 import { trackCta } from '@/utils/analytics';
 import { services } from '@/content/services';
+import { ShipmentTracker } from '@/components/ShipmentTracker';
 import { AboutPage } from './AboutPage';
 import './HomePage.css';
 
@@ -36,7 +37,7 @@ export function HomePage() {
     <>
       <PageMeta
         title="Home"
-        description="Global Logistics Solutions — international freight forwarding, customs, warehousing and project cargo."
+        description="Global Logistics Solutions — International Freight Forwarding, Customs, Warehousing and Project Cargo."
         path="/"
         jsonLd={organizationJsonLd}
       />
@@ -48,16 +49,18 @@ export function HomePage() {
             <div className="home-hero__actions">
               <button
                 type="button"
-                className="btn btn--on-dark"
+                className="btn btn--on-dark hero-btn hero-btn--primary"
                 onClick={() => {
                   trackCta('hero_quote');
                   open('/');
                 }}
               >
-                {t('home.ctaQuote')}
+                <span>{t('home.ctaQuote')}</span>
+                <span className="hero-btn__arrow" aria-hidden="true">→</span>
               </button>
-              <Link to="/services" className="btn btn--ghost-dark">
-                {t('home.ctaServices')}
+              <Link to="/services" className="btn btn--ghost-dark hero-btn hero-btn--ghost">
+                <span>{t('home.ctaServices')}</span>
+                <span className="hero-btn__arrow hero-btn__arrow--diag" aria-hidden="true">↗</span>
               </Link>
             </div>
           </div>
@@ -68,6 +71,9 @@ export function HomePage() {
           />
         </div>
       </section>
+
+      {/* Live Shipment Tracking Section */}
+      <ShipmentTracker />
 
       <section className="section">
         <div className="container">
@@ -111,6 +117,111 @@ export function HomePage() {
         <div id="blog"><BlogPage embedded /></div>
         <div id="career"><CareerPage embedded /></div>
       </Suspense>
+
+      {/* Comprehensive Logistics FAQ */}
+      <section id="faq" className="section home-faq">
+        <div className="container">
+          <div className="home-faq__header">
+            <span className="home-faq__badge">{t('faq.badge', 'Knowledge Base')}</span>
+            <h2>{t('faq.title', 'Frequently Asked Questions')}</h2>
+            <p className="home-faq__subtitle">
+              {t('faq.subtitle', 'Answers regarding freight pricing, customs clearance, restricted commodities, and transit times.')}
+            </p>
+          </div>
+
+          <div className="home-faq__list">
+            <details className="card home-faq__item">
+              <summary className="home-faq__question">
+                <span>{t('faq.q1', 'How are freight shipping rates and chargeable weights calculated?')}</span>
+                <span className="home-faq__chevron" aria-hidden="true">▾</span>
+              </summary>
+              <div className="home-faq__answer">
+                <p>
+                  {t(
+                    'faq.a1',
+                    'Freight charges depend on whichever is greater: actual gross weight or volumetric (dimensional) weight. For air freight, the volumetric formula is (Length × Width × Height in cm) / 6000. For ocean LCL, rates are billed per CBM (cubic meter) or 1,000 kg. For overland GCC trucking, standard full truckload (FTL) rates apply or CBM-based LTL pricing.'
+                  )}
+                </p>
+              </div>
+            </details>
+
+            <details className="card home-faq__item">
+              <summary className="home-faq__question">
+                <span>{t('faq.q2', 'What commodities are restricted, prohibited, or subject to special permits?')}</span>
+                <span className="home-faq__chevron" aria-hidden="true">▾</span>
+              </summary>
+              <div className="home-faq__answer">
+                <p>
+                  {t(
+                    'faq.a2',
+                    'Prohibited items include narcotics, unapproved pharmaceuticals, weapons, fireworks, and counterfeit goods. Regulated items requiring pre-approval include lithium batteries (requiring UN 38.3 test summaries & MSDS), chemicals/dangerous goods (requiring IATA/IMDG declarations), food and cosmetics (requiring SFDA pre-registration), and electronics/machinery (requiring SABER PCoC/SCoC).'
+                  )}
+                </p>
+              </div>
+            </details>
+
+            <details className="card home-faq__item">
+              <summary className="home-faq__question">
+                <span>{t('faq.q3', 'What documentation is required for import customs clearance in Saudi Arabia?')}</span>
+                <span className="home-faq__chevron" aria-hidden="true">▾</span>
+              </summary>
+              <div className="home-faq__answer">
+                <p>
+                  {t(
+                    'faq.a3',
+                    'Standard import documentation includes: 1) Original Commercial Invoice with HS codes; 2) Detailed Packing List; 3) Clean Bill of Lading (B/L) or Air Waybill (AWB); 4) Attested Certificate of Origin; 5) SABER Shipment Certificate of Conformity (SCoC); and 6) SFDA import permit for food, medical, or cosmetics. Our licensed FASAH brokers can handle the full clearance workflow.'
+                  )}
+                </p>
+              </div>
+            </details>
+
+            <details className="card home-faq__item">
+              <summary className="home-faq__question">
+                <span>{t('faq.q4', 'What are your typical transit times across Air, Ocean, and Land freight?')}</span>
+                <span className="home-faq__chevron" aria-hidden="true">▾</span>
+              </summary>
+              <div className="home-faq__answer">
+                <p>
+                  {t(
+                    'faq.a4',
+                    'Typical transit times: Air Freight: 1–3 business days for Express, 3–5 days for Standard. Overland GCC Trucking: 12–24 hours domestic intercity, 2–4 days cross-border. Ocean Freight: 14–22 days on Asia–Arabian Gulf routes, 18–28 days Europe–Middle East, and 28–38 days Americas–Middle East.'
+                  )}
+                </p>
+              </div>
+            </details>
+
+            <details className="card home-faq__item">
+              <summary className="home-faq__question">
+                <span>{t('faq.q5', 'Can I track my shipment online, and how do I receive live status updates?')}</span>
+                <span className="home-faq__chevron" aria-hidden="true">▾</span>
+              </summary>
+              <div className="home-faq__answer">
+                <p>
+                  {t(
+                    'faq.a5',
+                    'Yes! You can enter your tracking reference (such as GLS-882914 or your Bill of Lading / AWB number) in the Live Shipment Tracker at the top of our homepage. We also provide automated SMS, WhatsApp, and email milestone notifications at each stage of transit.'
+                  )}
+                </p>
+              </div>
+            </details>
+
+            <details className="card home-faq__item">
+              <summary className="home-faq__question">
+                <span>{t('faq.q6', 'How fast can I get a quotation, and how do I set up a corporate credit account?')}</span>
+                <span className="home-faq__chevron" aria-hidden="true">▾</span>
+              </summary>
+              <div className="home-faq__answer">
+                <p>
+                  {t(
+                    'faq.a6',
+                    'Click "Get a Quote" anywhere on the site or email sales@global-logisticssolution.com. We respond within 24 hours. For regular commercial shippers, our accounts department (accounts@global-logisticssolution.com) offers 30-day corporate credit facilities upon credit verification.'
+                  )}
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

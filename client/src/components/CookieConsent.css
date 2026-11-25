@@ -20,3 +20,14 @@
   justify-content: flex-end;
   margin-top: 0.75rem;
 }
+
+.cookie-banner__link {
+  color: var(--accent);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.cookie-banner__link:hover {
+  color: var(--accent-hover);
+}

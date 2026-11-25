@@ -58,7 +58,7 @@ export function RegisterPage() {
         localStorage.setItem('harborline_auth_token', res.token);
         localStorage.setItem('harborline_user', JSON.stringify(res.user));
         window.dispatchEvent(new Event('storage'));
-        navigate('/');
+        navigate('/account');
       }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Registration failed. Please try again.';

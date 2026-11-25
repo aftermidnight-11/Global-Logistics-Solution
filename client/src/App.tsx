@@ -26,6 +26,8 @@ const AdminPage = lazy(() => import('@/pages/AdminPage').then((m) => ({ default:
 const LoginPage = lazy(() => import('@/pages/LoginPage').then((m) => ({ default: m.LoginPage })));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage').then((m) => ({ default: m.RegisterPage })));
 const UserPage = lazy(() => import('@/pages/UserPage').then((m) => ({ default: m.UserPage })));
+const CookiePage = lazy(() => import('@/pages/CookiePage').then((m) => ({ default: m.CookiePage })));
+const TermsPage = lazy(() => import('@/pages/TermsPage').then((m) => ({ default: m.TermsPage })));
 
 function Fallback() {
   return <div className="section container">Loading…</div>;
@@ -68,6 +70,8 @@ export default function App() {
                   <Route path="services/:slug" element={<ServiceDetailPage />} />
                   <Route path="contact" element={<ContactPage />} />
                   <Route path="privacy" element={<PrivacyPage />} />
+                  <Route path="terms" element={<TermsPage />} />
+                  <Route path="cookies" element={<CookiePage />} />
                   <Route path="career" element={<CareerPage />} />
                   <Route path="gallery" element={<GalleryPage />} />
                   <Route path="case-studies" element={<CaseStudiesPage />} />
@@ -77,6 +81,10 @@ export default function App() {
                   <Route path="login" element={<LoginPage />} />
                   <Route path="register" element={<RegisterPage />} />
                   <Route path="account" element={<UserPage />} />
+                  <Route path="user" element={<Navigate to="/account" replace />} />
+                  <Route path="user-page" element={<Navigate to="/account" replace />} />
+                  <Route path="profile" element={<Navigate to="/account" replace />} />
+                  <Route path="dashboard" element={<Navigate to="/account" replace />} />
                   <Route path="404" element={<NotFoundPage />} />
                 </Route>
                 <Route path="admin" element={<AdminPage />} />

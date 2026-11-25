@@ -27,6 +27,7 @@ export function InquiryForm({ sourcePage, showAttachments = true, onSuccess, var
     const fd = new FormData(form);
 
     const name = (fd.get('name') as string || '').trim();
+    const email = (fd.get('email') as string || '').trim();
     const phone = (fd.get('phone') as string || '').trim();
     const inquiryType = (fd.get('inquiryType') as string || '').trim();
 
@@ -36,6 +37,10 @@ export function InquiryForm({ sourcePage, showAttachments = true, onSuccess, var
     }
     if (!phone) {
       setError(t('inquiry.errorPhone', 'Please enter your phone or WhatsApp number.'));
+      return;
+    }
+    if (!email) {
+      setError(t('inquiry.errorEmail', 'Please enter your business or personal email.'));
       return;
     }
     if (!inquiryType) {
@@ -67,7 +72,13 @@ export function InquiryForm({ sourcePage, showAttachments = true, onSuccess, var
   if (status === 'success') {
     return (
       <div className="inquiry-form__success" role="status">
-        {t('inquiry.success', 'Thank you. We will contact you within one business day.')}
+        <div className="inquiry-form__success-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <h3>{t('inquiry.successTitle', 'Quote Request Received!')}</h3>
+        <p>{t('inquiry.success', 'Thank you. We have sent an email confirmation to your inbox, and our freight team will contact you within 1 business day.')}</p>
       </div>
     );
   }
@@ -85,8 +96,13 @@ export function InquiryForm({ sourcePage, showAttachments = true, onSuccess, var
       </div>
 
       <div className="inquiry-form__field">
-        <label htmlFor={`${formId}-phone`}>{t('inquiry.phone', 'Phone (WhatsApp)')} *</label>
-        <input id={`${formId}-phone`} name="phone" required autoComplete="tel" />
+        <label htmlFor={`${formId}-email`}>{t('inquiry.email', 'Email Address')} *</label>
+        <input id={`${formId}-email`} type="email" name="email" required autoComplete="email" placeholder="name@company.com" />
+      </div>
+
+      <div className="inquiry-form__field">
+        <label htmlFor={`${formId}-phone`}>{t('inquiry.phone', 'Phone / WhatsApp')} *</label>
+        <input id={`${formId}-phone`} name="phone" required autoComplete="tel" placeholder="+966 ..." />
       </div>
 
       <div className="inquiry-form__field">

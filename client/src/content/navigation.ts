@@ -1,6 +1,8 @@
 export const topBarContacts = [
-  { region: 'Saudi Arabia', email: 'info@global-logisticssolution.com', phone: '+966 50 000 0000' },
-  { region: 'UAE', email: 'uae@global-logisticssolution.com', phone: '+971 4 000 0000' },
+  { region: 'Sales', email: 'sales@global-logisticssolution.com', phone: '+971 4 000 0000' },
+  { region: 'Import', email: 'import@global-logisticssolution.com', phone: '+971 4 000 0001' },
+  { region: 'Accounts', email: 'accounts@global-logisticssolution.com', phone: '+971 4 000 0002' },
+  { region: 'Info', email: 'info@global-logisticssolution.com', phone: '+966 50 000 0000' },
 ];
 
 export type NavItem = {
@@ -12,12 +14,19 @@ export type NavItem = {
 export const mainNav: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/#about' },
-  { label: 'Vision', path: '/#vision' },
-  { label: 'Services', path: '/#services' },
-  { label: 'Gallery', path: '/#gallery' },
+  {
+    label: 'Services',
+    children: [
+      { label: 'All Services', path: '/services' },
+      { label: 'Air Freight', path: '/services/air-freight' },
+      { label: 'Ocean Freight', path: '/services/ocean-freight' },
+      { label: 'Road Freight', path: '/services/road-freight' },
+      { label: 'Customs Clearance', path: '/services/customs-clearance' },
+      { label: 'Warehousing & 3PL', path: '/services/warehousing' },
+    ],
+  },
+  { label: 'Tracking', path: '/#tracking' },
   { label: 'Case Studies', path: '/#case-studies' },
-  { label: 'Blog', path: '/#blog' },
-  { label: 'Career', path: '/#career' },
   { label: 'Contact', path: '/contact' },
 ];
 
